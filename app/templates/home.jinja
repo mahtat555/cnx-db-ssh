@@ -1,0 +1,24 @@
+{% extends "app.jinja" %}
+
+{# Title #}
+{% block title %} Home Page {% endblock %}
+
+{# Sidebar - Show Databases and Tables  #}
+{% block sidebar %}
+    {% for database, tables in databases.items() %}
+        <li class="active">
+            <a href="#homeSubmenu{{loop.index}}" data-toggle="collapse" class="text-white dropdown-toggle"> {{ database }}</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu{{loop.index}}" style="margin-left: 10px;">
+                {% for table in tables %}
+                    <li>
+                        <a href="#" class="text-white"> {{ table }} </a>
+                    <li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{# Content - Show tables details #}
+{% block content %}
+{% endblock %}
