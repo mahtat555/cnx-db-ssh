@@ -31,6 +31,8 @@ $ source env/bin/activate
 $
 $ # Install the required libraries
 $ pip install -r requirements.txt
+$
+$ # Start the program
 $ cd app
 $ python index.py
 ```
