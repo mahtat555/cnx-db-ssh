@@ -26,10 +26,11 @@ $ cd conn-db-ssh
 $
 $ # Create isolated Python environment
 $ pip install virtualenv
-$ virtualenv -p python3 env
+$ python3 -m venv env
 $ source env/bin/activate
 $
 $ # Install the required libraries
 $ pip install -r requirements.txt
+$ cd app
 $ python index.py
 ```
