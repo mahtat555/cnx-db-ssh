@@ -11,16 +11,36 @@ from flask import Flask, render_template
 app = Flask(__name__)
 app.config.from_object('config')
 
+# Global data
+databases = {
+    "database1": ["table1", "table2"],
+    "database2": ["table3", "table4", "table5", "table6"],
+}
+
+tables = {
+    "table1": {
+        "columns": ["name", "email", "age"],
+        "rows": [
+            ["Alice", "alice@gmail.com", 19],
+            ["Bob", "bob@gmail.com", 31],
+        ]
+    }
+}
 
 @app.route("/", methods=["GET"])
 def home():
     """ This function return the home page
     """
-    databases = {
-        "database 1": ["table 1", "table 2"],
-        "database 2": ["table 3", "table 4", "table 5", "table 6"],
-    }
     return render_template("home.jinja", databases=databases)
+
+
+@app.route("/show/<database>/<int:table>", methods=["GET"])
+def show(database, table):
+    """ This function return the home page
+    """
+    table = tables[databases[database][table]]
+    return render_template(
+        "show.jinja", databases=databases, table=table)
 
 
 def main():
