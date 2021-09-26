@@ -11,7 +11,7 @@
             <ul class="collapse list-unstyled" id="homeSubmenu{{loop.index}}" style="margin-left: 10px;">
                 {% for table in tables %}
                     <li>
-                        <a href="/show/{{database}}/{{loop.index - 1}}" class="text-white"> {{ table }} </a>
+                        <a href="/show/{{database}}/{{table}}" class="text-white"> {{ table }} </a>
                     <li>
                 {% endfor %}
             </ul>

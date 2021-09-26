@@ -8,7 +8,7 @@ from app import app, index
 def main():
     """ Main function
     """
-    app.debug = True
+    #app.debug = True
     app.run()
 
 
