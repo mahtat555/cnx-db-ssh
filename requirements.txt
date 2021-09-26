@@ -2,3 +2,4 @@ sshtunnel
 mysql-connector-python
 flask
 python-dotenv
+
