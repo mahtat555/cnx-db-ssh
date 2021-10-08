@@ -9,7 +9,7 @@ it is the default page or home page.
 from flask import render_template
 
 from app import app
-from app.cache import databases, tables, cnx_db_ssh
+from app.cache import databases, cnx_db_ssh
 
 
 @app.route("/", methods=["GET"])
@@ -43,13 +43,13 @@ def show(database_name, table_name):
     )
 
 
-def __databases(databases):
+def __databases(_databases):
     """ Returns the list of databases and for each database returns
     its tables.
 
     """
-    if not databases:
+    if not _databases:
         databases_names = cnx_db_ssh.databases()
         for database_name in databases_names:
-            databases[database_name] = cnx_db_ssh.tables(database_name)
-    return databases
+            _databases[database_name] = cnx_db_ssh.tables(database_name)
+    return _databases

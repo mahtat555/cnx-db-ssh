@@ -33,10 +33,6 @@ class CNXDBSSH:
         # SSH tunnel
         self.__ssh_tunnel = None
 
-        # Database connection
-        self.__db_cnx = None
-        self.__db__cursor = None
-
     def connect(self):
         """ Create a connection a remote MySQL Server using an SSH key.
 
@@ -54,26 +50,33 @@ class CNXDBSSH:
         # Start the server
         self.__ssh_tunnel.start()
 
-        # Database connexion configuration
-        self.__db_cnx = mysql.connector.MySQLConnection(
-            user=self.__db_username,
-            password=self.__db_password,
-            host=self.__db_host,
-            # database=self.__db_database,
-            port=self.__ssh_tunnel.local_bind_port
-        )
-
-    def execute(self, query):
+    def execute(self, query, database=None):
         """ Send requests to the remote MYSQL server
 
         """
-        self.__db__cursor = self.__db_cnx.cursor()
+
+        # Database connexion configuration
+        _db_cnx = mysql.connector.MySQLConnection(
+            user=self.__db_username,
+            password=self.__db_password,
+            host=self.__db_host,
+            database=database,
+            port=self.__ssh_tunnel.local_bind_port
+        )
+
+        _db__cursor = _db_cnx.cursor()
+
         try:
-            _ = self.__db__cursor.execute(query)
+            _db__cursor.execute(query)
         except mysql.connector.Error as err:
             print(f"Something went wrong: {err}")
 
-        return self.__db__cursor.fetchall()
+        result = _db__cursor.fetchall()
+
+        _db_cnx.close()
+        _db__cursor.close()
+
+        return result
 
     def databases(self):
         """ Get the list of databases
@@ -86,20 +89,24 @@ class CNXDBSSH:
         """ Get the list of tables in a given database
 
         """
-        self.execute(f"USE {database};")
-        result = self.execute("SHOW TABLES;")
+        result = self.execute("SHOW TABLES;", database)
         return [item[0] for item in result]
 
     def table(self, database_name, table_name):
         """ Get the list of tables in a given database
 
         """
-        self.execute(f"USE {database_name};")
         # The table fields
-        table_description = self.execute(f"DESCRIBE {table_name}")
+        table_description = self.execute(
+            f"DESCRIBE {database_name}.{table_name}",
+            database_name
+        )
         columns = [item[0] for item in table_description]
         # The table data
-        rows = self.execute(f"SELECT * FROM {table_name};")
+        rows = self.execute(
+            f"SELECT * FROM {database_name}.{table_name};",
+            database_name
+        )
 
         return {
             "columns": columns,
@@ -111,5 +118,3 @@ class CNXDBSSH:
 
         """
         self.__ssh_tunnel.close()
-        self.__db_cnx.close()
-        self.__db__cursor.close()

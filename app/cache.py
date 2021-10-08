@@ -8,9 +8,6 @@ from app.db_ssh import CNXDBSSH
 # Used to store database names
 databases = {}
 
-# Used to store database names
-tables = {}
-
 # SSH connexion configuration
 ssh_host = config("SSH_HOST")
 ssh_port = config("SSH_PORT")
@@ -30,5 +27,3 @@ cnx_db_ssh = CNXDBSSH(
     db_username, db_password, ssh_port
 )
 cnx_db_ssh.connect()
-
-print("=======================================================================")
