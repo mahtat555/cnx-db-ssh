@@ -4,51 +4,52 @@
 
 ## Table of contents
 
-- [Requirements](#link:requirements)
+- [Requirements](#linkrequirements)
 
-- [Schema](#link:schema)
-    - [Tables / Classes](#link:tables)
-    - [Relationship / methods / propreties](#link:relationship)
+- [Schema](#linkschema)
+    - [Tables / Classes](#linktables)
+    - [Relationship / methods / propreties](#linkrelationship)
 
-- [Functionalities](#link:functionalities)
-    - [API / Facades](#link:api)
+- [Functionalities](#linkfunctionalities)
+    - [API / Facades](#linkapi)
 
-- [Roadmap](#link:roadmap)
-    - [Next Version / New features / Update](#link:update)
+- [Roadmap](#linkroadmap)
+    - [Next Version / New features / Update](#linkupdate)
 
 
+<a name="linkrequirements"></a>
 ## 1. Requirements
-<a name="link:requirements"></a>
 
 ...
 
+<a name="linkschema"></a>
 ## 2. Schema
-<a name="link:schema"></a>
 
+<a name="linktables"></a>
 ### 2.1 Tables / Classes
-<a name="link:tables"></a>
 
 ...
 
+<a name="linkrelationship"></a>
 ### 2.2 Relationship / methods / propreties
-<a name="link:relationship"></a>
 
 ...
 
+<a name="linkfunctionalities"></a>
 ## 3. Functionalities
-<a name="link:functionalities"></a>
 
+<a name="linkapi"></a>
 ### 3.1 API / Facades
-<a name="link:api"></a>
 
 ...
 
+<a name="linkroadmap"></a>
 ## 4. Roadmap
-<a name="link:roadmap"></a>
 
 ...
 
+<a name="linkupdate"></a>
 ### 4.1 Next Version / New features / Update
-<a name="link:update"></a>
+
 
 ...
